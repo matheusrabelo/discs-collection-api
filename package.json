@@ -1,0 +1,30 @@
+{
+  "name": "discs-collection-api",
+  "version": "1.0.0",
+  "description": "discs collection api",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon source/api/index.js --exec babel-node",
+    "server": "node dist/api/index.js",
+    "lint": "eslint source/**/*.js",
+    "prepublish": "eslint source/**/*.js",
+    "build": "babel source --out-dir dist --ignore test.js"
+  },
+  "keywords": [
+    "discs",
+    "collection"
+  ],
+  "author": "matheusfreirerabelo@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "eslint": "^4.14.0",
+    "eslint-config-google": "^0.9.1",
+    "nodemon": "^1.14.6"
+  },
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2"
+  }
+}
