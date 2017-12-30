@@ -1,5 +1,8 @@
 # Discs Collection API
 
+## Infraestrutura
+Você precisará ter um banco de dados mysql e executar o script `create-db.sql`
+
 ## Como executar
 - Clone este repositório
 - Faça uma cópia do arquivo `.env.example` para `.env`

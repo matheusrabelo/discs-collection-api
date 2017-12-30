@@ -1,9 +1,8 @@
 import express from 'express';
+import discsRouter from './discs';
 
 const router = new express.Router();
 
-router.get('*', (req, res) => {
-    res.status(200).json('hello world');
-});
+router.use('/discs', discsRouter);
 
 export default router;

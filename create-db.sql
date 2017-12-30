@@ -1,0 +1,9 @@
+USE discsdb;
+
+DROP TABLE IF EXISTS discs;
+
+CREATE TABLE discs (
+	id SERIAL PRIMARY KEY,
+    name VARCHAR(200),
+    created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP
+);
