@@ -10,6 +10,7 @@ const getQuery= (queryName) => {
 
 const getCollectionQuery = getQuery('get-collection');
 const deleteCollectionQuery = getQuery('delete-collection');
+const updateCollectionQuery = getQuery('update-collection');
 const getCollectionDiscsQuery = getQuery('get-collection-discs');
 const getCollectionsQuery = getQuery('get-collections');
 const createCollectionQuery = getQuery('create-collection');
@@ -28,6 +29,17 @@ export const getCollectionDiscs = (id) => {
     return new Promise((resolve, reject) => {
         const pool = getConnection();
         pool.query(getCollectionDiscsQuery, id, (error, results) => {
+            if (error) return reject(error);
+            return resolve(results);
+        });
+    });
+};
+
+export const updateCollection = (id, collection) => {
+    const name = collection.name;
+    return new Promise((resolve, reject) => {
+        const pool = getConnection();
+        pool.query(updateCollectionQuery, [name, id], (error, results) => {
             if (error) return reject(error);
             return resolve(results);
         });

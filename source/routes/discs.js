@@ -43,6 +43,20 @@ discs.get('/:id', (req, res) => {
         });
 });
 
+discs.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const disc = req.body;
+    return discsProcessor.updateDisc(id, disc)
+        .then((result) => {
+            if (result) return res.status(201).json(result);
+            res.status(400).json();
+        })
+        .catch((error) => {
+            console.error(error);
+            res.status(500).json();
+        });
+});
+
 discs.delete('/:id', (req, res) => {
     const { id } = req.params;
     return discsProcessor.deleteDisc(id)

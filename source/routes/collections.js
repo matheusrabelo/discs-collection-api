@@ -43,6 +43,20 @@ collections.get('/:id', (req, res) => {
         });
 });
 
+collections.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const collection = req.body;
+    return collectionsProcessor.updateCollection(id, collection)
+        .then((result) => {
+            if (result) return res.status(201).json(result);
+            res.status(400).json();
+        })
+        .catch((error) => {
+            console.error(error);
+            res.status(500).json();
+        });
+});
+
 collections.delete('/:id', (req, res) => {
     const { id } = req.params;
     return collectionsProcessor.deleteCollection(id)
