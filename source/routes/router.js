@@ -1,8 +1,8 @@
 import express from 'express';
-import discsRouter from './discs';
+import collectionsRouter from './collections';
 
 const router = new express.Router();
 
-router.use('/discs', discsRouter);
+router.use('/collections', collectionsRouter);
 
 export default router;
