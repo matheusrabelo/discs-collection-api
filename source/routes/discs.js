@@ -1,10 +1,10 @@
 import express from 'express';
-import * as collectionsProcessor from '../processors/collections';
+import * as discsProcessor from '../processors/discs';
 
-const collections = new express.Router();
+const discs = new express.Router();
 
-collections.get('/', (req, res) => {
-    return collectionsProcessor.getCollections()
+discs.get('/', (req, res) => {
+    return discsProcessor.getDiscs()
         .then((result) => {
             if (result && result.length > 0) {
                 return res.status(200).json(result);
@@ -17,9 +17,9 @@ collections.get('/', (req, res) => {
         });
 });
 
-collections.post('/', (req, res) => {
-    const collection = req.body;
-    return collectionsProcessor.createCollection(collection)
+discs.post('/', (req, res) => {
+    const disc = req.body;
+    return discsProcessor.createDisc(disc)
         .then((result) => {
             if (result) return res.status(201).json(result);
             res.status(400).json();
@@ -30,9 +30,9 @@ collections.post('/', (req, res) => {
         });
 });
 
-collections.get('/:id', (req, res) => {
+discs.get('/:id', (req, res) => {
     const { id } = req.params;
-    return collectionsProcessor.getCollection(id)
+    return discsProcessor.getDisc(id)
         .then((result) => {
             if (result) return res.status(200).json(result);
             res.status(404).json();
@@ -43,9 +43,9 @@ collections.get('/:id', (req, res) => {
         });
 });
 
-collections.delete('/:id', (req, res) => {
+discs.delete('/:id', (req, res) => {
     const { id } = req.params;
-    return collectionsProcessor.deleteCollection(id)
+    return discsProcessor.deleteDisc(id)
         .then((result) => {
             if (result) return res.status(200).json(result);
             res.status(404).json();
@@ -56,19 +56,4 @@ collections.delete('/:id', (req, res) => {
         });
 });
 
-collections.get('/:id/discs', (req, res) => {
-    const { id } = req.params;
-    return collectionsProcessor.getCollectionDiscs(id)
-        .then((result) => {
-            if (result && result.length > 0) {
-                return res.status(200).json(result);
-            }
-            res.status(404).json();
-        })
-        .catch((error) => {
-            console.error(error);
-            res.status(500).json();
-        });
-});
-
-export default collections;
+export default discs;
